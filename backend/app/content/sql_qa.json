@@ -1,0 +1,696 @@
+{
+ "source": "https://github.com/xoraus/CrackingTheSQLInterview",
+ "license": "MIT, Copyright (c) 2019 Sajjad Salaria",
+ "questions": [
+  {
+   "number": 1,
+   "section": "SQL Fundamentals",
+   "question": "SQL was developed as an integral part of...",
+   "answer": "Relational Database Management Systems (RDBMS). SQL is the ANSI-standard language for creating, querying, updating, and managing relational databases. Major implementations include MySQL, PostgreSQL, SQL Server, Oracle, and SQLite.\n\n*Real-world context*: Every web application you use — Instagram, Netflix, Uber — stores its data in SQL databases (often sharded or replicated, but SQL at the core)."
+  },
+  {
+   "number": 2,
+   "section": "SQL Fundamentals",
+   "question": "What does SQL stand for?",
+   "answer": "**S**tructured **Q**uery **L**anguage. Originally called SEQUEL at IBM in the 1970s."
+  },
+  {
+   "number": 3,
+   "section": "SQL Fundamentals",
+   "question": "What type of language is SQL?",
+   "answer": "**Declarative (non-procedural)**. You state *what* result you want, not *how* to compute it. The database's **query optimizer** decides the \"how\" — which indexes to use, which join order is fastest, etc.\n\nCompare with **PL/SQL** (Oracle) or **T-SQL** (SQL Server), which are procedural extensions that add loops, variables, and conditional logic."
+  },
+  {
+   "number": 4,
+   "section": "SQL Fundamentals",
+   "question": "Which is NOT a valid SQL command: SELECT, REMOVE, UPDATE, INSERT?",
+   "answer": "**REMOVE** is not valid. To delete rows, use `DELETE`. `DROP` removes objects (tables, databases).\n\n| Command | Purpose |\n|---------|---------|\n| SELECT | Read data |\n| INSERT | Add new rows |\n| UPDATE | Modify existing rows |\n| DELETE | Remove rows |\n| CREATE/ALTER/DROP | Manage schema objects |"
+  },
+  {
+   "number": 5,
+   "section": "SQL Fundamentals",
+   "question": "What is MySQL, and how does it differ from SQL?",
+   "answer": "**SQL** is the *language* (like English). **MySQL** is a *database system* that *speaks* SQL (like a person who speaks English). \n\nAnalogy: SQL is the recipe; MySQL is the kitchen that follows it."
+  },
+  {
+   "number": 6,
+   "section": "SQL Fundamentals",
+   "question": "What is PL/SQL, and how is it different from SQL?",
+   "answer": "**PL/SQL** = Procedural Language extensions to SQL (Oracle-specific). It adds variables, loops, IF-ELSE, and exception handling.\n\n| SQL | PL/SQL |\n|-----|--------|\n| Single statements | Blocks of code |\n| No variables | Variables & constants |\n| No loops | FOR, WHILE loops |\n| Data-oriented | Application-oriented |\n| Can embed in PL/SQL | Cannot embed SQL inside itself |"
+  },
+  {
+   "number": 7,
+   "section": "SQL Fundamentals",
+   "question": "What are the possible values for a BOOLEAN field in MySQL?",
+   "answer": "MySQL doesn't have a native `BOOLEAN` type. It uses `TINYINT(1)` where `0` = false, `1` = true, and any non-zero value is treated as true in conditions.\n```sql\nCREATE TABLE users (is_active TINYINT(1) DEFAULT 1);\n```\nPostgreSQL, however, has a true `BOOLEAN` type accepting `TRUE`, `FALSE`, and `NULL`."
+  },
+  {
+   "number": 8,
+   "section": "SQL Fundamentals",
+   "question": "Which data type for distance rounded to the nearest mile?",
+   "answer": "`INTEGER` (or `INT`). If you need fractional miles later, use `DECIMAL(8,2)`."
+  },
+  {
+   "number": 9,
+   "section": "SQL Fundamentals",
+   "question": "Which are valid SQL keywords?",
+   "answer": "`SELECT`, `FROM`, `WHERE`, `GROUP BY`, `HAVING`, `ORDER BY`, `JOIN`, `INSERT`, `UPDATE`, `DELETE`, `CREATE`, `ALTER`, `DROP`, `INDEX`, `UNION`, `LIMIT`, `DISTINCT`, `AS`, `AND`, `OR`, `NOT`, `IN`, `BETWEEN`, `LIKE`, `IS NULL`, `EXISTS`, `CASE`, `WHEN`, `THEN`, `ELSE`, `END`."
+  },
+  {
+   "number": 10,
+   "section": "SQL Fundamentals",
+   "question": "Which are valid SQL comments?",
+   "answer": "```sql\n-- Single-line comment (standard)\n/* Multi-line\n   comment */\n# Hash comment (MySQL only)\n```"
+  },
+  {
+   "number": 11,
+   "section": "Querying Data Like a Pro",
+   "question": "Which SQL statement extracts data?",
+   "answer": "`SELECT`. Optional clauses: `WHERE`, `GROUP BY`, `HAVING`, `ORDER BY`, `LIMIT`, `JOIN`.\n```sql\nSELECT name AS full_name, salary * 12 AS annual_salary\nFROM employees\nWHERE department = 'Engineering'\nORDER BY annual_salary DESC;\n```"
+  },
+  {
+   "number": 12,
+   "section": "Querying Data Like a Pro",
+   "question": "How to select all records from table `Products`?",
+   "answer": "```sql\nSELECT * FROM products;\n```\n⚠️ *Interview tip*: Always follow up with \"But in production, I list explicit columns to reduce network overhead and prevent breaking if columns are reordered or added.\""
+  },
+  {
+   "number": 13,
+   "section": "Querying Data Like a Pro",
+   "question": "Can we rename a column in output?",
+   "answer": "Yes, using `AS` (alias):\n```sql\nSELECT first_name AS fname, last_name AS lname FROM customers;\n-- AS is optional but recommended for readability:\nSELECT first_name fname FROM customers;\n```"
+  },
+  {
+   "number": 14,
+   "section": "Querying Data Like a Pro",
+   "question": "How to select `FirstName` from `Customers`?",
+   "answer": "```sql\nSELECT FirstName FROM Customers;\n```"
+  },
+  {
+   "number": 15,
+   "section": "Querying Data Like a Pro",
+   "question": "What does the FROM clause do?",
+   "answer": "Specifies the source table(s). Can include subqueries, JOINs, or even multiple tables (implicit cross join, but avoid this)."
+  },
+  {
+   "number": 16,
+   "section": "Querying Data Like a Pro",
+   "question": "Which statement returns only different values?",
+   "answer": "`SELECT DISTINCT`. It operates on the *entire selected row*.\n```sql\n-- Returns unique city-state combinations\nSELECT DISTINCT city, state FROM addresses;\n```"
+  },
+  {
+   "number": 17,
+   "section": "Querying Data Like a Pro",
+   "question": "Display distinct cities in ADDRESSES(id, street_name, number, city, state)?",
+   "answer": "```sql\nSELECT DISTINCT city FROM addresses;\n```"
+  },
+  {
+   "number": 18,
+   "section": "Querying Data Like a Pro",
+   "question": "Select all records where FirstName is \"John\"?",
+   "answer": "```sql\nSELECT * FROM Customers WHERE FirstName = 'John';\n```"
+  },
+  {
+   "number": 19,
+   "section": "Querying Data Like a Pro",
+   "question": "OR vs AND?",
+   "answer": "`AND` requires ALL conditions to be true. `OR` requires ANY to be true. Use parentheses to control precedence — `AND` binds tighter than `OR`.\n```sql\n-- Without parentheses, this is parsed as:\n-- WHERE (age > 18 AND city = 'NY') OR status = 'active'\nSELECT * FROM customers \nWHERE age > 18 AND (city = 'NY' OR city = 'LA');\n```"
+  },
+  {
+   "number": 20,
+   "section": "Querying Data Like a Pro",
+   "question": "Which comparison operators exist?",
+   "answer": "`=`, `!=` or `<>`, `>`, `<`, `>=`, `<=`. Some DBs support `<=>` (NULL-safe equal in MySQL)."
+  },
+  {
+   "number": 21,
+   "section": "Querying Data Like a Pro",
+   "question": "Select records where FirstName=\"John\" AND LastName=\"Jackson\"?",
+   "answer": "```sql\nSELECT * FROM Customers \nWHERE FirstName = 'John' AND LastName = 'Jackson';\n```"
+  },
+  {
+   "number": 22,
+   "section": "Querying Data Like a Pro",
+   "question": "How to select 10 random rows?",
+   "answer": "```sql\n-- MySQL\nSELECT * FROM tbl ORDER BY RAND() LIMIT 10;\n-- PostgreSQL\nSELECT * FROM tbl ORDER BY RANDOM() LIMIT 10;\n-- SQL Server\nSELECT TOP 10 * FROM tbl ORDER BY NEWID();\n```\nPerformance note: This is O(n log n) and full table scan. For large tables, use a random ID approach."
+  },
+  {
+   "number": 23,
+   "section": "Querying Data Like a Pro",
+   "question": "What does `ISNULL(price, 50)` return if price is NULL?",
+   "answer": "`50`. The first non-NULL value is returned.\nCross-database version: `COALESCE(price, 50)`."
+  },
+  {
+   "number": 24,
+   "section": "Querying Data Like a Pro",
+   "question": "Which operator searches text patterns?",
+   "answer": "`LIKE` with wildcards `%` (zero or more chars) and `_` (single char).\n```sql\nWHERE name LIKE 'A%'      -- starts with A\nWHERE name LIKE '%a%'     -- contains a\nWHERE name LIKE '_a%'     -- second char is a\nWHERE name LIKE '___'     -- exactly 3 characters\n```"
+  },
+  {
+   "number": 25,
+   "section": "Querying Data Like a Pro",
+   "question": "Details of students whose FirstName starts with 'K'?",
+   "answer": "```sql\nSELECT * FROM Students WHERE FirstName LIKE 'K%';\n```"
+  },
+  {
+   "number": 26,
+   "section": "Querying Data Like a Pro",
+   "question": "Which operator selects values in a range?",
+   "answer": "`BETWEEN` (inclusive):\n```sql\nSELECT * FROM sales WHERE amount BETWEEN 100 AND 500;\n-- Equivalent to: amount >= 100 AND amount <= 500\n```"
+  },
+  {
+   "number": 27,
+   "section": "Querying Data Like a Pro",
+   "question": "Correct syntax for date range?",
+   "answer": "```sql\nSELECT * FROM Sales \nWHERE Date BETWEEN '2017-12-01' AND '2018-01-01';\n```\nUse ISO-8601 format (`YYYY-MM-DD`) to avoid locale issues."
+  },
+  {
+   "number": 28,
+   "section": "Querying Data Like a Pro",
+   "question": "LastName alphabetically between \"Brooks\" and \"Gray\"?",
+   "answer": "```sql\nSELECT * FROM Customers WHERE LastName BETWEEN 'Brooks' AND 'Gray';\n```"
+  },
+  {
+   "number": 29,
+   "section": "Querying Data Like a Pro",
+   "question": "What does the IN keyword do?",
+   "answer": "Checks if a value matches any in a list. It's a shorthand for multiple ORs and often more readable.\n```sql\n-- These are equivalent:\nWHERE state IN ('CA', 'NY', 'TX')\nWHERE state = 'CA' OR state = 'NY' OR state = 'TX'\n```\n`IN` can also contain a subquery: `WHERE id IN (SELECT customer_id FROM orders)`."
+  },
+  {
+   "number": 30,
+   "section": "Querying Data Like a Pro",
+   "question": "What does UPPER do?",
+   "answer": "Converts to uppercase. `LOWER` to lowercase. `INITCAP` (Oracle/PostgreSQL) capitalizes first letter of each word.\n```sql\nSELECT UPPER('hello'); -- HELLO\n```"
+  },
+  {
+   "number": 31,
+   "section": "Querying Data Like a Pro",
+   "question": "Round up to the nearest integer?",
+   "answer": "`CEILING()` or `CEIL()`:\n```sql\nSELECT CEIL(25.01);   -- 26\nSELECT FLOOR(25.99);  -- 25\nSELECT ROUND(25.5);   -- 26\n```"
+  },
+  {
+   "number": 32,
+   "section": "Querying Data Like a Pro",
+   "question": "Current date in MySQL without time?",
+   "answer": "```sql\nSELECT CURDATE();        -- MySQL\nSELECT CURRENT_DATE;     -- Standard / PostgreSQL\n```"
+  },
+  {
+   "number": 33,
+   "section": "Querying Data Like a Pro",
+   "question": "Keyword to retrieve maximum value?",
+   "answer": "`MAX()` aggregate function.\n```sql\nSELECT MAX(salary) FROM employees;\n```"
+  },
+  {
+   "number": 34,
+   "section": "Querying Data Like a Pro",
+   "question": "Function to count results?",
+   "answer": "`COUNT()`. `COUNT(*)` counts rows. `COUNT(column)` counts non-NULL values.\n```sql\nSELECT COUNT(*) FROM orders;           -- Total orders\nSELECT COUNT(shipped_date) FROM orders; -- Only shipped orders\n```"
+  },
+  {
+   "number": 35,
+   "section": "Querying Data Like a Pro",
+   "question": "Which are aggregate functions?",
+   "answer": "`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`. Some DBs also have `STDDEV`, `VARIANCE`, `GROUP_CONCAT`/`STRING_AGG`."
+  },
+  {
+   "number": 36,
+   "section": "Querying Data Like a Pro",
+   "question": "Return number of records in Customers?",
+   "answer": "```sql\nSELECT COUNT(*) FROM Customers;\n```"
+  },
+  {
+   "number": 37,
+   "section": "Querying Data Like a Pro",
+   "question": "Sorting direction keywords?",
+   "answer": "`ASC` (ascending, default) and `DESC` (descending).\n```sql\nORDER BY price DESC, name ASC;\n```"
+  },
+  {
+   "number": 38,
+   "section": "Querying Data Like a Pro",
+   "question": "Default sort order if not specified?",
+   "answer": "`ASC`."
+  },
+  {
+   "number": 39,
+   "section": "Querying Data Like a Pro",
+   "question": "Top 3 students by mark?",
+   "answer": "```sql\n-- MySQL / PostgreSQL\nSELECT name, mark FROM Students ORDER BY mark DESC LIMIT 3;\n-- SQL Server\nSELECT TOP 3 name, mark FROM Students ORDER BY mark DESC;\n-- Oracle\nSELECT name, mark FROM Students WHERE ROWNUM <= 3 ORDER BY mark DESC;\n```"
+  },
+  {
+   "number": 40,
+   "section": "Querying Data Like a Pro",
+   "question": "Sort Customers descending by FirstName?",
+   "answer": "```sql\nSELECT * FROM Customers ORDER BY FirstName DESC;\n```"
+  },
+  {
+   "number": 41,
+   "section": "Querying Data Like a Pro",
+   "question": "Correct GROUP BY syntax?",
+   "answer": "```sql\nSELECT name, COUNT(name) FROM customers GROUP BY name;\n```\nIn standard SQL (and MySQL 5.7+ with `ONLY_FULL_GROUP_BY`), any non-aggregated column in SELECT must appear in GROUP BY."
+  },
+  {
+   "number": 42,
+   "section": "Querying Data Like a Pro",
+   "question": "WHERE vs HAVING?",
+   "answer": "| WHERE | HAVING |\n|-------|--------|\n| Filters **rows** | Filters **groups** |\n| Executes **before** GROUP BY | Executes **after** GROUP BY |\n| Cannot use aggregates | Can use `COUNT()`, `SUM()`, etc. |\n| Can reference any column | Can only reference grouped columns or aggregates |\n\n```sql\nSELECT department, AVG(salary) AS avg_sal\nFROM employees\nWHERE hire_date > '2020-01-01'      -- Filter rows first\nGROUP BY department\nHAVING AVG(salary) > 60000;         -- Then filter groups\n```"
+  },
+  {
+   "number": 43,
+   "section": "JOINs — The Heart of Relational Databases",
+   "question": "What is JOIN used for?",
+   "answer": "Combines rows from two or more tables based on a related column (foreign key relationship)."
+  },
+  {
+   "number": 44,
+   "section": "JOINs — The Heart of Relational Databases",
+   "question": "Most common type of join?",
+   "answer": "`INNER JOIN`. It's the default — if you write `FROM A JOIN B`, most databases interpret it as `INNER JOIN`."
+  },
+  {
+   "number": 45,
+   "section": "JOINs — The Heart of Relational Databases",
+   "question": "What are different JOINs in SQL?",
+   "answer": "1. **INNER JOIN** — matching rows only\n2. **LEFT (OUTER) JOIN** — all left + matched right\n3. **RIGHT (OUTER) JOIN** — all right + matched left\n4. **FULL OUTER JOIN** — all rows from both\n5. **CROSS JOIN** — Cartesian product\n6. **SELF JOIN** — table joined to itself"
+  },
+  {
+   "number": 46,
+   "section": "JOINs — The Heart of Relational Databases",
+   "question": "Which is NOT TRUE about the ON clause?",
+   "answer": "The `ON` clause specifies the join condition. It improves readability over the old comma-syntax, supports multi-column joins (`ON a.id = b.id AND a.type = b.type`), and is required for outer joins. Any statement claiming otherwise is false."
+  },
+  {
+   "number": 47,
+   "section": "JOINs — The Heart of Relational Databases",
+   "question": "Inner join result?",
+   "answer": "Returns only rows where the join condition evaluates to true in **both** tables."
+  },
+  {
+   "number": 48,
+   "section": "JOINs — The Heart of Relational Databases",
+   "question": "Can you join 3 tables with INNER JOIN?",
+   "answer": "Yes. There's no practical limit (though performance degrades with many joins).\n```sql\nSELECT f.name, d.name AS division, c.name AS country\nFROM faculty f\nINNER JOIN division d ON f.division_id = d.id\nINNER JOIN country c ON f.country_id = c.id;\n```"
+  },
+  {
+   "number": 49,
+   "section": "JOINs — The Heart of Relational Databases",
+   "question": "Can you join a table to itself?",
+   "answer": "Yes — **SELF JOIN**. You must use aliases to distinguish the two instances.\n```sql\nSELECT a.name AS employee, b.name AS manager\nFROM employees a, employees b\nWHERE a.manager_id = b.id;\n```"
+  },
+  {
+   "number": 50,
+   "section": "JOINs — The Heart of Relational Databases",
+   "question": "What is true about Cartesian Products?",
+   "answer": "A Cartesian product occurs when tables are joined **without a condition**. Every row in Table A pairs with every row in Table B: `m × n` rows total. It's usually a bug, but `CROSS JOIN` is explicit and valid for combinatorial data."
+  },
+  {
+   "number": 51,
+   "section": "JOINs — The Heart of Relational Databases",
+   "question": "INTERSECTION in relational algebra?",
+   "answer": "Corresponds to rows present in **both** sets. SQL: `INTERSECT`."
+  },
+  {
+   "number": 52,
+   "section": "JOINs — The Heart of Relational Databases",
+   "question": "UNION in relational algebra?",
+   "answer": "Corresponds to rows in **either** set, duplicates removed. Think \"A OR B\" in set terms."
+  },
+  {
+   "number": 53,
+   "section": "JOINs — The Heart of Relational Databases",
+   "question": "UNION vs UNION ALL?",
+   "answer": "| UNION | UNION ALL |\n|-------|-----------|\n| Removes duplicates | Keeps duplicates |\n| Slower (sort + dedup) | Faster |\n| Use when uniqueness matters | Use when sets are already distinct or duplicates are meaningful |"
+  },
+  {
+   "number": 54,
+   "section": "JOINs — The Heart of Relational Databases",
+   "question": "Which set operator for \"searched but didn't buy\"?",
+   "answer": "`MINUS` (Oracle) or `EXCEPT` (PostgreSQL/SQL Server):\n```sql\nSELECT name FROM searchers WHERE product = 'X'\nEXCEPT\nSELECT name FROM buyers WHERE product = 'X';\n```"
+  },
+  {
+   "number": 55,
+   "section": "Subqueries, CTEs & Window Functions",
+   "question": "A SELECT statement whose results are used in filtering the main query is called?",
+   "answer": "A **subquery** (inner query or nested query)."
+  },
+  {
+   "number": 56,
+   "section": "Subqueries, CTEs & Window Functions",
+   "question": "Subqueries can be nested in...",
+   "answer": "`SELECT`, `INSERT`, `UPDATE`, `DELETE`, or another subquery. They can appear in `WHERE`, `FROM`, `SELECT` (scalar), or `HAVING`."
+  },
+  {
+   "number": 57,
+   "section": "Subqueries, CTEs & Window Functions",
+   "question": "Row comparison operators with subqueries?",
+   "answer": "`IN`, `ANY`, `ALL`, `EXISTS`, `NOT EXISTS`, and standard comparison operators (`=`, `>`, `<`, `>=`, `<=`, `<>`).\n```sql\nWHERE salary > ALL (SELECT salary FROM employees WHERE dept = 'Sales')\nWHERE salary > ANY (SELECT salary FROM employees WHERE dept = 'Sales')\n```"
+  },
+  {
+   "number": 58,
+   "section": "Subqueries, CTEs & Window Functions",
+   "question": "A subquery inside a subquery is called?",
+   "answer": "A **nested subquery**."
+  },
+  {
+   "number": 59,
+   "section": "Subqueries, CTEs & Window Functions",
+   "question": "A subquery that references the outer query?",
+   "answer": "A **correlated subquery**. It executes once for each row of the outer query.\n```sql\nSELECT * FROM employees e\nWHERE salary > (SELECT AVG(salary) FROM employees WHERE dept = e.dept);\n```"
+  },
+  {
+   "number": 60,
+   "section": "Subqueries, CTEs & Window Functions",
+   "question": "What is the CASE function?",
+   "answer": "SQL's version of IF-THEN-ELSE. Two forms: simple and searched.\n```sql\n-- Searched CASE (more flexible)\nSELECT name,\n    CASE \n        WHEN salary >= 100000 THEN 'Executive'\n        WHEN salary >= 60000  THEN 'Senior'\n        WHEN salary >= 40000  THEN 'Mid'\n        ELSE 'Junior'\n    END AS level\nFROM employees;\n\n-- Simple CASE\nSELECT name,\n    CASE dept\n        WHEN 'Engineering' THEN 'Tech'\n        WHEN 'Sales' THEN 'Revenue'\n        ELSE 'Other'\n    END AS dept_category\nFROM employees;\n```"
+  },
+  {
+   "number": 61,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Different types of SQL statements?",
+   "answer": "DDL (CREATE, ALTER, DROP, TRUNCATE), DML (INSERT, UPDATE, DELETE, SELECT), DQL (SELECT — sometimes grouped with DML), DCL (GRANT, REVOKE), TCL (COMMIT, ROLLBACK, SAVEPOINT)."
+  },
+  {
+   "number": 62,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Which statements are DDL?",
+   "answer": "`CREATE`, `ALTER`, `DROP`, `TRUNCATE`, `RENAME`."
+  },
+  {
+   "number": 63,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "DML includes?",
+   "answer": "`SELECT`, `INSERT`, `UPDATE`, `DELETE`."
+  },
+  {
+   "number": 64,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "GRANT and REVOKE are under?",
+   "answer": "**DCL** (Data Control Language)."
+  },
+  {
+   "number": 65,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Which is NOT a DML statement?",
+   "answer": "`COMMIT` — it's **TCL** (Transaction Control Language). Also `CREATE`, `GRANT`, `TRUNCATE` are not DML."
+  },
+  {
+   "number": 66,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Which statement inserts new data?",
+   "answer": "`INSERT INTO`."
+  },
+  {
+   "number": 67,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Must you specify columns when inserting?",
+   "answer": "No, if you provide values for ALL columns in the exact table order. But **best practice**: always specify columns. It prevents errors when schema changes and is self-documenting.\n```sql\n-- Risky: breaks if columns are reordered\nINSERT INTO customers VALUES (1, 'John', 'Doe');\n\n-- Safe: explicit and clear\nINSERT INTO customers (id, first_name, last_name) VALUES (1, 'John', 'Doe');\n```"
+  },
+  {
+   "number": 68,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Insert a new record into Customers?",
+   "answer": "```sql\nINSERT INTO Customers (id, first_name, last_name) VALUES (1, 'John', 'Doe');\n```"
+  },
+  {
+   "number": 69,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Insert \"Hawkins\" as LastName in Customers?",
+   "answer": "```sql\nINSERT INTO Customers (LastName) VALUES ('Hawkins');\n```"
+  },
+  {
+   "number": 70,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "How to create a temporary table in MySQL?",
+   "answer": "```sql\nCREATE TEMPORARY TABLE temp_top_customers\nSELECT * FROM customers WHERE total_spent > 10000;\n```\nIt exists only for the current session/connection and is automatically dropped when the session ends."
+  },
+  {
+   "number": 71,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Which statement updates data?",
+   "answer": "`UPDATE`."
+  },
+  {
+   "number": 72,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Keyword in UPDATE to change values?",
+   "answer": "`SET`."
+  },
+  {
+   "number": 73,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Change \"Jackson\" to \"Hawkins\" in LastName?",
+   "answer": "```sql\nUPDATE Customers SET LastName = 'Hawkins' WHERE LastName = 'Jackson';\n```\n⚠️ *Without WHERE, every row becomes Hawkins!*"
+  },
+  {
+   "number": 74,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Which statement deletes data?",
+   "answer": "`DELETE`."
+  },
+  {
+   "number": 75,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Delete records where FirstName is \"John\"?",
+   "answer": "```sql\nDELETE FROM Customers WHERE FirstName = 'John';\n```"
+  },
+  {
+   "number": 76,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "What is FROM used for?",
+   "answer": "Specifies the source table(s) for `SELECT`, `UPDATE`, `DELETE`, and `INSERT`."
+  },
+  {
+   "number": 77,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "DELETE vs TRUNCATE?",
+   "answer": "See the comparison table above. Key differences: `DELETE` is DML (row-by-row, rollbackable, fires triggers, has WHERE). `TRUNCATE` is DDL (bulk page deallocation, faster, no WHERE, resets auto-increment, doesn't fire triggers)."
+  },
+  {
+   "number": 78,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Which statement creates a table?",
+   "answer": "`CREATE TABLE`."
+  },
+  {
+   "number": 79,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "What is Collation?",
+   "answer": "Collation defines the **rules for comparing and sorting** characters. It works with the character set.\n- `utf8mb4_general_ci`: Case-insensitive, faster\n- `utf8mb4_unicode_ci`: Case-insensitive, accurate for all Unicode\n- `utf8mb4_bin`: Binary comparison (case-sensitive)\n```sql\nSELECT * FROM users WHERE name = 'john'; -- Matches 'John' with _ci collation\n```"
+  },
+  {
+   "number": 80,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "What is AUTO_INCREMENT?",
+   "answer": "Automatically generates sequential unique integers for a column, typically the PRIMARY KEY.\n```sql\nCREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50));\nINSERT INTO users (name) VALUES ('Alice');  -- id becomes 1 automatically\n```\nIn PostgreSQL, use `SERIAL` or `GENERATED ALWAYS AS IDENTITY`. In SQL Server, `IDENTITY(1,1)`."
+  },
+  {
+   "number": 81,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Valid constraints in MySQL?",
+   "answer": "`NOT NULL`, `UNIQUE`, `PRIMARY KEY`, `FOREIGN KEY`, `CHECK`, `DEFAULT`, `AUTO_INCREMENT`."
+  },
+  {
+   "number": 82,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Which is NOT TRUE about constraints?",
+   "answer": "Any statement claiming constraints hurt data integrity or are optional in production is false. Constraints are essential for data quality."
+  },
+  {
+   "number": 83,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "NOT NULL constraint?",
+   "answer": "Forces a column to reject NULL values. Every row must have a value."
+  },
+  {
+   "number": 84,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "An unique (non-key) field?",
+   "answer": "Use the `UNIQUE` constraint. Unlike PRIMARY KEY, a table can have multiple UNIQUE constraints, and they typically allow one NULL."
+  },
+  {
+   "number": 85,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "What is CHECK constraint?",
+   "answer": "Enforces a boolean condition on every row:\n```sql\nCREATE TABLE persons (age INT CHECK (age >= 0 AND age <= 150));\n```"
+  },
+  {
+   "number": 86,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "UNIQUE vs PRIMARY KEY?",
+   "answer": "| PRIMARY KEY | UNIQUE |\n|-------------|--------|\n| One per table | Multiple per table |\n| Cannot be NULL | Usually allows one NULL |\n| Implicitly indexed | Explicitly indexed |\n| Identifies the row | Alternate identifier |"
+  },
+  {
+   "number": 87,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "What does DROP TABLE do?",
+   "answer": "Permanently removes the table definition, all data, indexes, triggers, and constraints. **Cannot be undone** (unless in a transaction that rolls back, in some DBs).\n```sql\nDROP TABLE IF EXISTS old_customers;\n```"
+  },
+  {
+   "number": 88,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "DROP vs TRUNCATE?",
+   "answer": "`DROP` removes the table *structure*. `TRUNCATE` removes only the *data*, keeping the structure."
+  },
+  {
+   "number": 89,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Add `order_date` column to `order` table?",
+   "answer": "```sql\nALTER TABLE `order` ADD order_date DATE;\n```\nBackticks escape reserved words. Better: rename the table to `orders`."
+  },
+  {
+   "number": 90,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Rename column Address to Addr in Customer?",
+   "answer": "```sql\n-- MySQL\nALTER TABLE Customer CHANGE Address Addr VARCHAR(50);\n-- PostgreSQL / Standard\nALTER TABLE Customer RENAME COLUMN Address TO Addr;\n```"
+  },
+  {
+   "number": 91,
+   "section": "Data Definition & Manipulation (DDL, DML, DCL)",
+   "question": "Delete column CITY from ADDRESSES?",
+   "answer": "```sql\nALTER TABLE addresses DROP COLUMN city;\n```"
+  },
+  {
+   "number": 92,
+   "section": "Indexes, Privileges & Security",
+   "question": "What are Indexes?",
+   "answer": "Data structures (typically B-Trees) that speed up data retrieval at the cost of slower writes and extra storage. Think of them as a book's table of contents."
+  },
+  {
+   "number": 93,
+   "section": "Indexes, Privileges & Security",
+   "question": "Clustered vs Non-Clustered?",
+   "answer": "- **Clustered**: Determines physical storage order. One per table. The data IS the index.\n- **Non-Clustered**: Separate structure with pointers to data. Multiple allowed per table.\n- Clustered indexes excel at range queries. Non-clustered are more flexible."
+  },
+  {
+   "number": 94,
+   "section": "Indexes, Privileges & Security",
+   "question": "Statement for assigning privileges?",
+   "answer": "`GRANT`. To remove: `REVOKE`.\n```sql\nGRANT SELECT, INSERT ON database.orders TO 'app_user'@'%';\nREVOKE DELETE ON database.orders FROM 'app_user'@'%';\n```"
+  },
+  {
+   "number": 95,
+   "section": "Indexes, Privileges & Security",
+   "question": "Types of privileges?",
+   "answer": "1. **System privileges**: CREATE, DROP, ALTER (database-level)\n2. **Object privileges**: SELECT, INSERT, UPDATE, DELETE, EXECUTE (table/procedure-level)"
+  },
+  {
+   "number": 96,
+   "section": "Indexes, Privileges & Security",
+   "question": "Privileges a user can grant?",
+   "answer": "`SELECT`, `INSERT`, `UPDATE`, `DELETE`, `REFERENCES`, `EXECUTE`, `USAGE`, `ALL PRIVILEGES`."
+  },
+  {
+   "number": 97,
+   "section": "Transactions, ACID & Concurrency",
+   "question": "What does \"locking\" refer to?",
+   "answer": "A mechanism to prevent concurrent transactions from interfering with each other. Locks can be **shared** (read locks, multiple allowed) or **exclusive** (write locks, only one allowed)."
+  },
+  {
+   "number": 98,
+   "section": "Transactions, ACID & Concurrency",
+   "question": "Main transaction controls?",
+   "answer": "- `COMMIT` — Make changes permanent\n- `ROLLBACK` — Undo all changes in the transaction\n- `SAVEPOINT` — Set a partial rollback point\n```sql\nSTART TRANSACTION;\nUPDATE accounts SET balance = balance - 100 WHERE id = 1;\nSAVEPOINT before_credit;\nUPDATE accounts SET balance = balance + 100 WHERE id = 2;\n-- Oops, wrong account!\nROLLBACK TO SAVEPOINT before_credit;\n-- Now retry with correct account\nCOMMIT;\n```"
+  },
+  {
+   "number": 99,
+   "section": "Transactions, ACID & Concurrency",
+   "question": "A transaction that completes execution is said to be?",
+   "answer": "**Committed**."
+  },
+  {
+   "number": 100,
+   "section": "Transactions, ACID & Concurrency",
+   "question": "What does ROLLBACK do after COMMIT?",
+   "answer": "**Nothing.** Once `COMMIT` is executed, changes are permanent. `ROLLBACK` only works on uncommitted changes."
+  },
+  {
+   "number": 101,
+   "section": "Transactions, ACID & Concurrency",
+   "question": "Valid properties of a transaction?",
+   "answer": "**ACID**: Atomicity, Consistency, Isolation, Durability."
+  },
+  {
+   "number": 102,
+   "section": "Transactions, ACID & Concurrency",
+   "question": "What if autocommit is enabled?",
+   "answer": "Every individual statement is automatically committed. In MySQL, autocommit is ON by default. Turn it off for multi-statement transactions:\n```sql\nSET autocommit = 0;\n-- ... multiple statements ...\nCOMMIT;\nSET autocommit = 1;\n```"
+  },
+  {
+   "number": 103,
+   "section": "Transactions, ACID & Concurrency",
+   "question": "Default isolation level in MySQL?",
+   "answer": "**REPEATABLE READ** (InnoDB engine). Prevents dirty reads and non-repeatable reads, but phantom reads are possible (though InnoDB uses MVCC + gap locking to mostly prevent them)."
+  },
+  {
+   "number": 104,
+   "section": "Transactions, ACID & Concurrency",
+   "question": "Is autocommit enabled by default in MySQL?",
+   "answer": "**Yes**, for each new session."
+  },
+  {
+   "number": 105,
+   "section": "Views, Stored Procedures, Triggers & Cursors",
+   "question": "What is a virtual table in MySQL?",
+   "answer": "A **View**."
+  },
+  {
+   "number": 106,
+   "section": "Views, Stored Procedures, Triggers & Cursors",
+   "question": "Are views updatable?",
+   "answer": "Some are. Requirements: based on a single table, no aggregates/DISTINCT/GROUP BY/UNION, includes primary key, and all NOT NULL columns."
+  },
+  {
+   "number": 107,
+   "section": "Views, Stored Procedures, Triggers & Cursors",
+   "question": "Advantages of views?",
+   "answer": "1. **Simplify complex queries** — hide JOINs and aggregations\n2. **Security** — expose only specific columns/rows\n3. **Logical independence** — shield apps from schema changes\n4. **Consistency** — same calculation logic everywhere"
+  },
+  {
+   "number": 108,
+   "section": "Views, Stored Procedures, Triggers & Cursors",
+   "question": "Does a view contain data?",
+   "answer": "Regular views: **No** (virtual, query executed on access). Materialized views: **Yes** (stored data, needs refresh)."
+  },
+  {
+   "number": 109,
+   "section": "Views, Stored Procedures, Triggers & Cursors",
+   "question": "How to remove a view?",
+   "answer": "```sql\nDROP VIEW IF EXISTS order_summary;\n```"
+  },
+  {
+   "number": 110,
+   "section": "Views, Stored Procedures, Triggers & Cursors",
+   "question": "Can a view be based on another view?",
+   "answer": "Yes — nested views. Be careful with deep nesting as it hurts performance and readability."
+  },
+  {
+   "number": 111,
+   "section": "Views, Stored Procedures, Triggers & Cursors",
+   "question": "Iterate over rows in a stored procedure?",
+   "answer": "Use a **CURSOR**. Lifecycle: `DECLARE` → `OPEN` → `FETCH` → `CLOSE`."
+  },
+  {
+   "number": 112,
+   "section": "Views, Stored Procedures, Triggers & Cursors",
+   "question": "Process of finding a good query execution strategy?",
+   "answer": "**Query optimization**. The database's query optimizer generates multiple execution plans and picks the cheapest one based on statistics, indexes, and cost models. You can inspect plans with `EXPLAIN`."
+  },
+  {
+   "number": 113,
+   "section": "Views, Stored Procedures, Triggers & Cursors",
+   "question": "What is a trigger?",
+   "answer": "A stored procedure that automatically executes in response to a DML event (INSERT, UPDATE, DELETE) or DDL event (CREATE, ALTER, DROP). Components: **Event** (when), **Condition** (optional), **Action** (what to do)."
+  },
+  {
+   "number": 114,
+   "section": "Views, Stored Procedures, Triggers & Cursors",
+   "question": "A stored procedure auto-executing on INSERT/UPDATE/DELETE?",
+   "answer": "A **Trigger**."
+  },
+  {
+   "number": 115,
+   "section": "Indexes, Privileges & Security",
+   "question": "What is SQL Injection?",
+   "answer": "A code injection attack where malicious SQL is inserted via user input. Prevention:\n1. **Parameterized queries** (prepared statements)\n2. **Input validation**\n3. **ORM frameworks** (most handle escaping automatically)\n4. **Least privilege** (app user shouldn't have DROP permissions)\n5. **Stored procedures** with parameters"
+  }
+ ]
+}

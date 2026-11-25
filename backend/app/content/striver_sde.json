@@ -1,0 +1,285 @@
+{
+ "title": "Striver-style SDE sheet",
+ "note": "Curated topic-by-topic in the order of Striver's SDE Sheet (takeuforward.org). GeeksforGeeks/InterviewBit-only items are replaced by the closest LeetCode problem, so this is inspired by, not a copy of, the original sheet.",
+ "source": "https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/",
+ "groups": [
+  {
+   "name": "Arrays I",
+   "slugs": [
+    "set-matrix-zeroes",
+    "pascals-triangle",
+    "next-permutation",
+    "maximum-subarray",
+    "sort-colors",
+    "best-time-to-buy-and-sell-stock"
+   ]
+  },
+  {
+   "name": "Arrays II",
+   "slugs": [
+    "rotate-image",
+    "merge-intervals",
+    "merge-sorted-array",
+    "find-the-duplicate-number",
+    "set-mismatch",
+    "reverse-pairs"
+   ]
+  },
+  {
+   "name": "Arrays III",
+   "slugs": [
+    "search-a-2d-matrix",
+    "powx-n",
+    "majority-element",
+    "majority-element-ii",
+    "unique-paths"
+   ]
+  },
+  {
+   "name": "Hashing",
+   "slugs": [
+    "two-sum",
+    "4sum",
+    "longest-consecutive-sequence",
+    "longest-substring-without-repeating-characters",
+    "subarray-sum-equals-k"
+   ]
+  },
+  {
+   "name": "Linked List I",
+   "slugs": [
+    "reverse-linked-list",
+    "middle-of-the-linked-list",
+    "merge-two-sorted-lists",
+    "remove-nth-node-from-end-of-list",
+    "add-two-numbers",
+    "delete-node-in-a-linked-list"
+   ]
+  },
+  {
+   "name": "Linked List II",
+   "slugs": [
+    "intersection-of-two-linked-lists",
+    "linked-list-cycle",
+    "reverse-nodes-in-k-group",
+    "palindrome-linked-list",
+    "linked-list-cycle-ii",
+    "rotate-list"
+   ]
+  },
+  {
+   "name": "Linked List & Arrays",
+   "slugs": [
+    "copy-list-with-random-pointer",
+    "3sum",
+    "trapping-rain-water",
+    "remove-duplicates-from-sorted-array",
+    "max-consecutive-ones"
+   ]
+  },
+  {
+   "name": "Greedy",
+   "slugs": [
+    "non-overlapping-intervals",
+    "jump-game",
+    "jump-game-ii",
+    "coin-change",
+    "assign-cookies",
+    "gas-station"
+   ]
+  },
+  {
+   "name": "Recursion",
+   "slugs": [
+    "subsets",
+    "subsets-ii",
+    "combination-sum",
+    "combination-sum-ii",
+    "palindrome-partitioning",
+    "permutation-sequence"
+   ]
+  },
+  {
+   "name": "Recursion & Backtracking",
+   "slugs": [
+    "permutations",
+    "n-queens",
+    "sudoku-solver",
+    "word-break-ii",
+    "word-search"
+   ]
+  },
+  {
+   "name": "Binary Search",
+   "slugs": [
+    "single-element-in-a-sorted-array",
+    "search-in-rotated-sorted-array",
+    "median-of-two-sorted-arrays",
+    "koko-eating-bananas",
+    "find-minimum-in-rotated-sorted-array",
+    "split-array-largest-sum"
+   ]
+  },
+  {
+   "name": "Heaps",
+   "slugs": [
+    "kth-largest-element-in-an-array",
+    "find-median-from-data-stream",
+    "merge-k-sorted-lists",
+    "top-k-frequent-elements",
+    "task-scheduler"
+   ]
+  },
+  {
+   "name": "Stack & Queue I",
+   "slugs": [
+    "implement-queue-using-stacks",
+    "implement-stack-using-queues",
+    "valid-parentheses",
+    "next-greater-element-i",
+    "next-greater-element-ii"
+   ]
+  },
+  {
+   "name": "Stack & Queue II",
+   "slugs": [
+    "lru-cache",
+    "lfu-cache",
+    "largest-rectangle-in-histogram",
+    "sliding-window-maximum",
+    "min-stack",
+    "rotting-oranges",
+    "online-stock-span"
+   ]
+  },
+  {
+   "name": "Strings I",
+   "slugs": [
+    "reverse-words-in-a-string",
+    "longest-palindromic-substring",
+    "roman-to-integer",
+    "integer-to-roman",
+    "string-to-integer-atoi",
+    "longest-common-prefix",
+    "repeated-string-match"
+   ]
+  },
+  {
+   "name": "Strings II",
+   "slugs": [
+    "find-the-index-of-the-first-occurrence-in-a-string",
+    "shortest-palindrome",
+    "valid-anagram",
+    "count-and-say",
+    "compare-version-numbers"
+   ]
+  },
+  {
+   "name": "Binary Tree I",
+   "slugs": [
+    "binary-tree-inorder-traversal",
+    "binary-tree-preorder-traversal",
+    "binary-tree-postorder-traversal",
+    "binary-tree-right-side-view",
+    "vertical-order-traversal-of-a-binary-tree"
+   ]
+  },
+  {
+   "name": "Binary Tree II",
+   "slugs": [
+    "binary-tree-level-order-traversal",
+    "maximum-depth-of-binary-tree",
+    "diameter-of-binary-tree",
+    "balanced-binary-tree",
+    "lowest-common-ancestor-of-a-binary-tree",
+    "same-tree",
+    "binary-tree-zigzag-level-order-traversal"
+   ]
+  },
+  {
+   "name": "Binary Tree III",
+   "slugs": [
+    "binary-tree-maximum-path-sum",
+    "construct-binary-tree-from-preorder-and-inorder-traversal",
+    "construct-binary-tree-from-inorder-and-postorder-traversal",
+    "symmetric-tree",
+    "flatten-binary-tree-to-linked-list",
+    "maximum-width-of-binary-tree"
+   ]
+  },
+  {
+   "name": "Binary Search Tree I",
+   "slugs": [
+    "populating-next-right-pointers-in-each-node",
+    "search-in-a-binary-search-tree",
+    "convert-sorted-array-to-binary-search-tree",
+    "construct-binary-search-tree-from-preorder-traversal",
+    "validate-binary-search-tree",
+    "lowest-common-ancestor-of-a-binary-search-tree"
+   ]
+  },
+  {
+   "name": "Binary Search Tree II",
+   "slugs": [
+    "kth-smallest-element-in-a-bst",
+    "two-sum-iv-input-is-a-bst",
+    "binary-search-tree-iterator",
+    "serialize-and-deserialize-binary-tree",
+    "kth-largest-element-in-a-stream",
+    "recover-binary-search-tree"
+   ]
+  },
+  {
+   "name": "Graphs I",
+   "slugs": [
+    "clone-graph",
+    "number-of-islands",
+    "is-graph-bipartite",
+    "course-schedule",
+    "course-schedule-ii",
+    "flood-fill"
+   ]
+  },
+  {
+   "name": "Graphs II",
+   "slugs": [
+    "network-delay-time",
+    "cheapest-flights-within-k-stops",
+    "min-cost-to-connect-all-points",
+    "number-of-provinces",
+    "critical-connections-in-a-network"
+   ]
+  },
+  {
+   "name": "Dynamic Programming I",
+   "slugs": [
+    "maximum-product-subarray",
+    "longest-increasing-subsequence",
+    "longest-common-subsequence",
+    "edit-distance",
+    "partition-equal-subset-sum",
+    "burst-balloons"
+   ]
+  },
+  {
+   "name": "Dynamic Programming II",
+   "slugs": [
+    "minimum-path-sum",
+    "coin-change-ii",
+    "word-break",
+    "palindrome-partitioning-ii",
+    "maximum-profit-in-job-scheduling",
+    "super-egg-drop"
+   ]
+  },
+  {
+   "name": "Trie",
+   "slugs": [
+    "implement-trie-prefix-tree",
+    "maximum-xor-of-two-numbers-in-an-array",
+    "maximum-xor-with-an-element-from-array",
+    "word-search-ii"
+   ]
+  }
+ ]
+}

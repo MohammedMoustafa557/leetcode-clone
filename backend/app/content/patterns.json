@@ -1,0 +1,223 @@
+{
+ "note": "Written for this project (MIT). Template snippets are our own.",
+ "patterns": [
+  {
+   "name": "Two Pointers",
+   "when": "Sorted arrays, pairs/triplets with a target sum, in-place removal, palindromes.",
+   "idea": "Move a left and a right index toward each other (or both forward) so each element is visited once: O(n) instead of O(n\u00b2).",
+   "template": "l, r = 0, len(a) - 1\nwhile l < r:\n    s = a[l] + a[r]\n    if s == target:\n        return [l, r]\n    if s < target:\n        l += 1\n    else:\n        r -= 1",
+   "slugs": [
+    "two-sum-ii-input-array-is-sorted",
+    "3sum",
+    "container-with-most-water",
+    "valid-palindrome",
+    "trapping-rain-water",
+    "remove-duplicates-from-sorted-array"
+   ]
+  },
+  {
+   "name": "Sliding Window",
+   "when": "Longest/shortest contiguous subarray or substring that satisfies a condition.",
+   "idea": "Grow the window on the right; shrink it from the left while the condition breaks. Each index enters and leaves once.",
+   "template": "best = 0\nl = 0\ncount = {}\nfor r, ch in enumerate(s):\n    count[ch] = count.get(ch, 0) + 1\n    while window_is_invalid(count):\n        count[s[l]] -= 1\n        l += 1\n    best = max(best, r - l + 1)",
+   "slugs": [
+    "longest-substring-without-repeating-characters",
+    "minimum-window-substring",
+    "longest-repeating-character-replacement",
+    "permutation-in-string",
+    "sliding-window-maximum",
+    "best-time-to-buy-and-sell-stock"
+   ]
+  },
+  {
+   "name": "Fast & Slow Pointers",
+   "when": "Cycles in linked lists or sequences, the middle of a list.",
+   "idea": "One pointer moves 1 step, the other 2 steps. If there is a cycle they meet; when the fast one ends, the slow one is in the middle.",
+   "template": "slow = fast = head\nwhile fast and fast.next:\n    slow = slow.next\n    fast = fast.next.next\n    if slow is fast:\n        return True\nreturn False",
+   "slugs": [
+    "linked-list-cycle",
+    "linked-list-cycle-ii",
+    "middle-of-the-linked-list",
+    "happy-number",
+    "find-the-duplicate-number",
+    "palindrome-linked-list"
+   ]
+  },
+  {
+   "name": "Merge Intervals",
+   "when": "Overlapping ranges: meetings, bookings, merging time slots.",
+   "idea": "Sort by start time, then walk once and merge each interval into the last one if they overlap.",
+   "template": "intervals.sort()\nmerged = []\nfor s, e in intervals:\n    if merged and s <= merged[-1][1]:\n        merged[-1][1] = max(merged[-1][1], e)\n    else:\n        merged.append([s, e])",
+   "slugs": [
+    "merge-intervals",
+    "insert-interval",
+    "non-overlapping-intervals",
+    "meeting-rooms-ii",
+    "interval-list-intersections",
+    "minimum-number-of-arrows-to-burst-balloons"
+   ]
+  },
+  {
+   "name": "Cyclic Sort",
+   "when": "Numbers in a known range 1..n (or 0..n): find missing or duplicate numbers.",
+   "idea": "Put each number at the index it belongs to by swapping; the positions that are wrong afterwards are the answer.",
+   "template": "i = 0\nwhile i < len(nums):\n    j = nums[i] - 1\n    if 0 <= j < len(nums) and nums[i] != nums[j]:\n        nums[i], nums[j] = nums[j], nums[i]\n    else:\n        i += 1",
+   "slugs": [
+    "missing-number",
+    "find-all-numbers-disappeared-in-an-array",
+    "find-all-duplicates-in-an-array",
+    "first-missing-positive",
+    "set-mismatch"
+   ]
+  },
+  {
+   "name": "In-place Linked List Reversal",
+   "when": "Reverse a whole list or parts of it without extra memory.",
+   "idea": "Keep prev, cur and next pointers and flip one arrow at a time.",
+   "template": "prev, cur = None, head\nwhile cur:\n    nxt = cur.next\n    cur.next = prev\n    prev, cur = cur, nxt\nreturn prev",
+   "slugs": [
+    "reverse-linked-list",
+    "reverse-linked-list-ii",
+    "reverse-nodes-in-k-group",
+    "swap-nodes-in-pairs",
+    "rotate-list",
+    "reorder-list"
+   ]
+  },
+  {
+   "name": "Tree BFS",
+   "when": "Level by level work on trees: level order, right side view, minimum depth.",
+   "idea": "Use a queue; process the tree one level (one queue length) at a time.",
+   "template": "q = deque([root])\nwhile q:\n    for _ in range(len(q)):\n        node = q.popleft()\n        if node.left: q.append(node.left)\n        if node.right: q.append(node.right)",
+   "slugs": [
+    "binary-tree-level-order-traversal",
+    "binary-tree-zigzag-level-order-traversal",
+    "binary-tree-right-side-view",
+    "minimum-depth-of-binary-tree",
+    "average-of-levels-in-binary-tree",
+    "populating-next-right-pointers-in-each-node"
+   ]
+  },
+  {
+   "name": "Tree DFS",
+   "when": "Paths, depths, subtree properties, validating trees.",
+   "idea": "Recursion: solve for the left and right subtree, then combine the answers at the current node.",
+   "template": "def dfs(node):\n    if not node:\n        return 0\n    left, right = dfs(node.left), dfs(node.right)\n    return 1 + max(left, right)",
+   "slugs": [
+    "maximum-depth-of-binary-tree",
+    "path-sum",
+    "path-sum-ii",
+    "diameter-of-binary-tree",
+    "binary-tree-maximum-path-sum",
+    "validate-binary-search-tree"
+   ]
+  },
+  {
+   "name": "Two Heaps",
+   "when": "Running median, or balancing a small half and a big half of the data.",
+   "idea": "A max-heap holds the smaller half and a min-heap the bigger half; keep their sizes within one.",
+   "template": "small, large = [], []  # max-heap (negated), min-heap\nheappush(small, -num)\nheappush(large, -heappop(small))\nif len(large) > len(small):\n    heappush(small, -heappop(large))",
+   "slugs": [
+    "find-median-from-data-stream",
+    "sliding-window-median",
+    "ipo"
+   ]
+  },
+  {
+   "name": "Subsets & Backtracking",
+   "when": "All combinations, permutations, subsets, board puzzles.",
+   "idea": "Build the answer step by step; at each step choose, recurse, then undo the choice.",
+   "template": "res = []\ndef backtrack(start, path):\n    res.append(path[:])\n    for i in range(start, len(nums)):\n        path.append(nums[i])\n        backtrack(i + 1, path)\n        path.pop()\nbacktrack(0, [])",
+   "slugs": [
+    "subsets",
+    "subsets-ii",
+    "permutations",
+    "combination-sum",
+    "letter-combinations-of-a-phone-number",
+    "n-queens"
+   ]
+  },
+  {
+   "name": "Modified Binary Search",
+   "when": "Sorted or rotated arrays, or searching over an answer range (\"minimum speed that works\").",
+   "idea": "Keep a range [lo, hi] and cut it in half each step using a condition that is monotonic.",
+   "template": "lo, hi = 0, len(a) - 1\nwhile lo <= hi:\n    mid = (lo + hi) // 2\n    if a[mid] == target:\n        return mid\n    if a[mid] < target:\n        lo = mid + 1\n    else:\n        hi = mid - 1\nreturn -1",
+   "slugs": [
+    "binary-search",
+    "search-in-rotated-sorted-array",
+    "find-minimum-in-rotated-sorted-array",
+    "koko-eating-bananas",
+    "search-a-2d-matrix",
+    "median-of-two-sorted-arrays"
+   ]
+  },
+  {
+   "name": "Top K Elements",
+   "when": "The k largest, smallest, most frequent or closest items.",
+   "idea": "Keep a heap of size k; the heap root is always the current k-th best item. O(n log k).",
+   "template": "heap = []\nfor x in nums:\n    heappush(heap, x)\n    if len(heap) > k:\n        heappop(heap)\nreturn heap[0]",
+   "slugs": [
+    "kth-largest-element-in-an-array",
+    "top-k-frequent-elements",
+    "k-closest-points-to-origin",
+    "kth-largest-element-in-a-stream",
+    "task-scheduler",
+    "reorganize-string"
+   ]
+  },
+  {
+   "name": "K-way Merge",
+   "when": "Merge several sorted lists or find the smallest item across them.",
+   "idea": "Push the head of each list into a min-heap; pop the smallest and push its next item.",
+   "template": "heap = [(lst[0], i, 0) for i, lst in enumerate(lists) if lst]\nheapify(heap)\nwhile heap:\n    val, i, j = heappop(heap)\n    out.append(val)\n    if j + 1 < len(lists[i]):\n        heappush(heap, (lists[i][j + 1], i, j + 1))",
+   "slugs": [
+    "merge-k-sorted-lists",
+    "kth-smallest-element-in-a-sorted-matrix",
+    "find-k-pairs-with-smallest-sums",
+    "smallest-range-covering-elements-from-k-lists"
+   ]
+  },
+  {
+   "name": "Topological Sort",
+   "when": "Tasks with dependencies, course prerequisites, build order.",
+   "idea": "Count incoming edges; repeatedly take nodes with zero incoming edges (Kahn's algorithm). If some remain, there is a cycle.",
+   "template": "indeg = [0] * n\nfor a, b in edges:\n    graph[a].append(b)\n    indeg[b] += 1\nq = deque(i for i in range(n) if indeg[i] == 0)\norder = []\nwhile q:\n    u = q.popleft(); order.append(u)\n    for v in graph[u]:\n        indeg[v] -= 1\n        if indeg[v] == 0: q.append(v)",
+   "slugs": [
+    "course-schedule",
+    "course-schedule-ii",
+    "alien-dictionary",
+    "minimum-height-trees",
+    "parallel-courses",
+    "find-all-possible-recipes-from-given-supplies"
+   ]
+  },
+  {
+   "name": "Dynamic Programming",
+   "when": "Count ways, min/max cost, yes/no questions with overlapping subproblems.",
+   "idea": "Define the state (what dp[i] means), the transition from smaller states, and the base case. Cache it or fill a table.",
+   "template": "@cache\ndef dp(i):\n    if i <= 1:\n        return 1\n    return dp(i - 1) + dp(i - 2)",
+   "slugs": [
+    "climbing-stairs",
+    "house-robber",
+    "coin-change",
+    "longest-increasing-subsequence",
+    "longest-common-subsequence",
+    "partition-equal-subset-sum"
+   ]
+  },
+  {
+   "name": "Graph Traversal & Union-Find",
+   "when": "Grids, islands, connected components, shortest paths in unweighted graphs.",
+   "idea": "BFS/DFS visits every cell once; Union-Find merges groups and answers \"are these connected?\" almost in O(1).",
+   "template": "parent = list(range(n))\ndef find(x):\n    while parent[x] != x:\n        parent[x] = parent[parent[x]]\n        x = parent[x]\n    return x\ndef union(a, b):\n    parent[find(a)] = find(b)",
+   "slugs": [
+    "number-of-islands",
+    "rotting-oranges",
+    "clone-graph",
+    "pacific-atlantic-water-flow",
+    "number-of-provinces",
+    "redundant-connection"
+   ]
+  }
+ ]
+}

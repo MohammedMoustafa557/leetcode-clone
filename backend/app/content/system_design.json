@@ -1,0 +1,318 @@
+{
+ "primer": {
+  "source": "https://github.com/donnemartin/system-design-primer",
+  "license": "CC BY 4.0 (links and titles only; summaries are our own)",
+  "topics": [
+   {
+    "title": "Performance vs scalability",
+    "url": "https://github.com/donnemartin/system-design-primer#performance-vs-scalability"
+   },
+   {
+    "title": "Latency vs throughput",
+    "url": "https://github.com/donnemartin/system-design-primer#latency-vs-throughput"
+   },
+   {
+    "title": "Availability vs consistency",
+    "url": "https://github.com/donnemartin/system-design-primer#availability-vs-consistency"
+   },
+   {
+    "title": "Consistency patterns",
+    "url": "https://github.com/donnemartin/system-design-primer#consistency-patterns"
+   },
+   {
+    "title": "Availability patterns",
+    "url": "https://github.com/donnemartin/system-design-primer#availability-patterns"
+   },
+   {
+    "title": "Domain name system",
+    "url": "https://github.com/donnemartin/system-design-primer#domain-name-system"
+   },
+   {
+    "title": "Content delivery network",
+    "url": "https://github.com/donnemartin/system-design-primer#content-delivery-network"
+   },
+   {
+    "title": "Load balancer",
+    "url": "https://github.com/donnemartin/system-design-primer#load-balancer"
+   },
+   {
+    "title": "Reverse proxy (web server)",
+    "url": "https://github.com/donnemartin/system-design-primer#reverse-proxy-web-server"
+   },
+   {
+    "title": "Application layer",
+    "url": "https://github.com/donnemartin/system-design-primer#application-layer"
+   },
+   {
+    "title": "Database",
+    "url": "https://github.com/donnemartin/system-design-primer#database"
+   },
+   {
+    "title": "Cache",
+    "url": "https://github.com/donnemartin/system-design-primer#cache"
+   },
+   {
+    "title": "Asynchronism",
+    "url": "https://github.com/donnemartin/system-design-primer#asynchronism"
+   },
+   {
+    "title": "Communication",
+    "url": "https://github.com/donnemartin/system-design-primer#communication"
+   },
+   {
+    "title": "Security",
+    "url": "https://github.com/donnemartin/system-design-primer#security"
+   },
+   {
+    "title": "How to approach a system design interview question",
+    "url": "https://github.com/donnemartin/system-design-primer#how-to-approach-a-system-design-interview-question"
+   },
+   {
+    "title": "System design interview questions with solutions",
+    "url": "https://github.com/donnemartin/system-design-primer#system-design-interview-questions-with-solutions"
+   }
+  ]
+ },
+ "karan": {
+  "source": "https://github.com/karanpratapsingh/system-design",
+  "license": "CC BY-NC-ND 4.0 (titles and outbound links only, no content copied)",
+  "chapters": [
+   {
+    "title": "What is system design?",
+    "url": "https://github.com/karanpratapsingh/system-design#what-is-system-design"
+   },
+   {
+    "title": "IP",
+    "url": "https://github.com/karanpratapsingh/system-design#ip"
+   },
+   {
+    "title": "OSI Model",
+    "url": "https://github.com/karanpratapsingh/system-design#osi-model"
+   },
+   {
+    "title": "TCP and UDP",
+    "url": "https://github.com/karanpratapsingh/system-design#tcp-and-udp"
+   },
+   {
+    "title": "Domain Name System (DNS)",
+    "url": "https://github.com/karanpratapsingh/system-design#domain-name-system-dns"
+   },
+   {
+    "title": "Load Balancing",
+    "url": "https://github.com/karanpratapsingh/system-design#load-balancing"
+   },
+   {
+    "title": "Clustering",
+    "url": "https://github.com/karanpratapsingh/system-design#clustering"
+   },
+   {
+    "title": "Caching",
+    "url": "https://github.com/karanpratapsingh/system-design#caching"
+   },
+   {
+    "title": "Content Delivery Network (CDN)",
+    "url": "https://github.com/karanpratapsingh/system-design#content-delivery-network-cdn"
+   },
+   {
+    "title": "Proxy",
+    "url": "https://github.com/karanpratapsingh/system-design#proxy"
+   },
+   {
+    "title": "Availability",
+    "url": "https://github.com/karanpratapsingh/system-design#availability"
+   },
+   {
+    "title": "Scalability",
+    "url": "https://github.com/karanpratapsingh/system-design#scalability"
+   },
+   {
+    "title": "Storage",
+    "url": "https://github.com/karanpratapsingh/system-design#storage"
+   },
+   {
+    "title": "Databases and DBMS",
+    "url": "https://github.com/karanpratapsingh/system-design#databases-and-dbms"
+   },
+   {
+    "title": "SQL databases",
+    "url": "https://github.com/karanpratapsingh/system-design#sql-databases"
+   },
+   {
+    "title": "NoSQL databases",
+    "url": "https://github.com/karanpratapsingh/system-design#nosql-databases"
+   },
+   {
+    "title": "SQL vs NoSQL databases",
+    "url": "https://github.com/karanpratapsingh/system-design#sql-vs-nosql-databases"
+   },
+   {
+    "title": "Database Replication",
+    "url": "https://github.com/karanpratapsingh/system-design#database-replication"
+   },
+   {
+    "title": "Indexes",
+    "url": "https://github.com/karanpratapsingh/system-design#indexes"
+   },
+   {
+    "title": "Normalization and Denormalization",
+    "url": "https://github.com/karanpratapsingh/system-design#normalization-and-denormalization"
+   },
+   {
+    "title": "ACID and BASE consistency models",
+    "url": "https://github.com/karanpratapsingh/system-design#acid-and-base-consistency-models"
+   },
+   {
+    "title": "CAP Theorem",
+    "url": "https://github.com/karanpratapsingh/system-design#cap-theorem"
+   },
+   {
+    "title": "PACELC Theorem",
+    "url": "https://github.com/karanpratapsingh/system-design#pacelc-theorem"
+   },
+   {
+    "title": "Transactions",
+    "url": "https://github.com/karanpratapsingh/system-design#transactions"
+   },
+   {
+    "title": "Distributed Transactions",
+    "url": "https://github.com/karanpratapsingh/system-design#distributed-transactions"
+   },
+   {
+    "title": "Sharding",
+    "url": "https://github.com/karanpratapsingh/system-design#sharding"
+   },
+   {
+    "title": "Consistent Hashing",
+    "url": "https://github.com/karanpratapsingh/system-design#consistent-hashing"
+   },
+   {
+    "title": "Database Federation",
+    "url": "https://github.com/karanpratapsingh/system-design#database-federation"
+   },
+   {
+    "title": "N-tier architecture",
+    "url": "https://github.com/karanpratapsingh/system-design#n-tier-architecture"
+   },
+   {
+    "title": "Message Brokers",
+    "url": "https://github.com/karanpratapsingh/system-design#message-brokers"
+   },
+   {
+    "title": "Message Queues",
+    "url": "https://github.com/karanpratapsingh/system-design#message-queues"
+   },
+   {
+    "title": "Publish-Subscribe",
+    "url": "https://github.com/karanpratapsingh/system-design#publish-subscribe"
+   },
+   {
+    "title": "Enterprise Service Bus (ESB)",
+    "url": "https://github.com/karanpratapsingh/system-design#enterprise-service-bus-esb"
+   },
+   {
+    "title": "Monoliths and Microservices",
+    "url": "https://github.com/karanpratapsingh/system-design#monoliths-and-microservices"
+   },
+   {
+    "title": "Event-Driven Architecture (EDA)",
+    "url": "https://github.com/karanpratapsingh/system-design#event-driven-architecture-eda"
+   },
+   {
+    "title": "Event Sourcing",
+    "url": "https://github.com/karanpratapsingh/system-design#event-sourcing"
+   },
+   {
+    "title": "Command and Query Responsibility Segregation (CQRS)",
+    "url": "https://github.com/karanpratapsingh/system-design#command-and-query-responsibility-segregation-cqrs"
+   },
+   {
+    "title": "API Gateway",
+    "url": "https://github.com/karanpratapsingh/system-design#api-gateway"
+   },
+   {
+    "title": "REST, GraphQL, gRPC",
+    "url": "https://github.com/karanpratapsingh/system-design#rest-graphql-grpc"
+   },
+   {
+    "title": "Long polling, WebSockets, Server-Sent Events (SSE)",
+    "url": "https://github.com/karanpratapsingh/system-design#long-polling-websockets-server-sent-events-sse"
+   },
+   {
+    "title": "Geohashing and Quadtrees",
+    "url": "https://github.com/karanpratapsingh/system-design#geohashing-and-quadtrees"
+   },
+   {
+    "title": "Circuit breaker",
+    "url": "https://github.com/karanpratapsingh/system-design#circuit-breaker"
+   },
+   {
+    "title": "Rate Limiting",
+    "url": "https://github.com/karanpratapsingh/system-design#rate-limiting"
+   },
+   {
+    "title": "Idempotency",
+    "url": "https://github.com/karanpratapsingh/system-design#idempotency"
+   },
+   {
+    "title": "Service Discovery",
+    "url": "https://github.com/karanpratapsingh/system-design#service-discovery"
+   },
+   {
+    "title": "SLA, SLO, SLI",
+    "url": "https://github.com/karanpratapsingh/system-design#sla-slo-sli"
+   },
+   {
+    "title": "Disaster recovery",
+    "url": "https://github.com/karanpratapsingh/system-design#disaster-recovery"
+   },
+   {
+    "title": "Virtual Machines (VMs) and Containers",
+    "url": "https://github.com/karanpratapsingh/system-design#virtual-machines-vms-and-containers"
+   },
+   {
+    "title": "OAuth 2.0 and OpenID Connect (OIDC)",
+    "url": "https://github.com/karanpratapsingh/system-design#oauth-20-and-openid-connect-oidc"
+   },
+   {
+    "title": "Single Sign-On (SSO)",
+    "url": "https://github.com/karanpratapsingh/system-design#single-sign-on-sso"
+   },
+   {
+    "title": "SSL, TLS, mTLS",
+    "url": "https://github.com/karanpratapsingh/system-design#ssl-tls-mtls"
+   },
+   {
+    "title": "System Design Interviews",
+    "url": "https://github.com/karanpratapsingh/system-design#system-design-interviews"
+   },
+   {
+    "title": "URL Shortener",
+    "url": "https://github.com/karanpratapsingh/system-design#url-shortener"
+   },
+   {
+    "title": "WhatsApp",
+    "url": "https://github.com/karanpratapsingh/system-design#whatsapp"
+   },
+   {
+    "title": "Twitter",
+    "url": "https://github.com/karanpratapsingh/system-design#twitter"
+   },
+   {
+    "title": "Netflix",
+    "url": "https://github.com/karanpratapsingh/system-design#netflix"
+   },
+   {
+    "title": "Uber",
+    "url": "https://github.com/karanpratapsingh/system-design#uber"
+   },
+   {
+    "title": "Next Steps",
+    "url": "https://github.com/karanpratapsingh/system-design#next-steps"
+   },
+   {
+    "title": "References",
+    "url": "https://github.com/karanpratapsingh/system-design#references"
+   }
+  ]
+ }
+}
