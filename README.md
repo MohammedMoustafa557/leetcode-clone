@@ -1,4 +1,4 @@
-# CodeArena: a LeetCode-style practice platform
+ a LeetCode-style practice platform
 
 [![CI](https://github.com/MohammedMoustafa557/leetcode-clone/actions/workflows/ci.yml/badge.svg)](https://github.com/MohammedMoustafa557/leetcode-clone/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.12-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688) ![React](https://img.shields.io/badge/React-19-61dafb) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791) ![License](https://img.shields.io/badge/license-MIT-green)
